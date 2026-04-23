@@ -1,0 +1,17 @@
+package com.silveira.care360.di;
+
+import com.silveira.care360.data.repository.IncidenciaRepositoryImpl;
+import com.silveira.care360.domain.repository.IncidenciaRepository;
+
+import dagger.Binds;
+import dagger.Module;
+import dagger.hilt.InstallIn;
+import dagger.hilt.components.SingletonComponent;
+
+@Module
+@InstallIn(SingletonComponent.class)
+public abstract class IncidenciaRepositoryModule {
+
+    @Binds
+    public abstract IncidenciaRepository bindIncidenciaRepository(IncidenciaRepositoryImpl impl);
+}

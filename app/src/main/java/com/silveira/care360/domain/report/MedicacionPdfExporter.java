@@ -1,0 +1,31 @@
+package com.silveira.care360.domain.report;
+
+import android.net.Uri;
+
+import com.silveira.care360.domain.common.ResultCallback;
+import com.silveira.care360.domain.model.Medicamento;
+
+import java.util.List;
+
+public interface MedicacionPdfExporter {
+
+    void export(List<Medicamento> medicamentos, ResultCallback<Result> callback);
+
+    class Result {
+        private final Uri uri;
+        private final String fileName;
+
+        public Result(Uri uri, String fileName) {
+            this.uri = uri;
+            this.fileName = fileName;
+        }
+
+        public Uri getUri() {
+            return uri;
+        }
+
+        public String getFileName() {
+            return fileName;
+        }
+    }
+}

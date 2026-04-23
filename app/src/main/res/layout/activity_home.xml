@@ -1,0 +1,927 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_home_surface"
+    tools:context=".ui.HomeActivity">
+
+    <!-- Fondo -->
+    <ImageView
+        android:id="@+id/imgBackground"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:alpha="0"
+        android:scaleType="fitXY"
+        android:src="@drawable/pantalla_dos"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+
+    <!-- Header reutilizable -->
+    <include
+        android:id="@+id/headerUsuario"
+        layout="@layout/header_usuario"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <LinearLayout
+        android:id="@+id/rowTopProfile"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="22dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginEnd="22dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:clickable="true"
+        android:focusable="true"
+        android:elevation="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/headerUsuario">
+
+        <FrameLayout
+            android:layout_width="58dp"
+            android:layout_height="58dp">
+
+            <ImageView
+                android:id="@+id/imgTopProfileAvatarStandalone"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:contentDescription="@string/home_care_avatar_cd"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_avatar_neutro" />
+
+            <TextView
+                android:id="@+id/txtTopProfileAddPhoto"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#99143152"
+                android:gravity="center"
+                android:padding="6dp"
+                android:text="@string/profile_add_photo_inline"
+                android:textAlignment="center"
+                android:textColor="#FFFFFF"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:visibility="gone" />
+        </FrameLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/txtNombreCuidadaStandalone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="@string/home_care_name_placeholder"
+                android:textColor="#FFFFFF"
+                android:textSize="28sp"
+                android:textStyle="bold"
+                tools:text="Persona 1"/>
+
+            <TextView
+                android:id="@+id/txtEdadStandalone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text=""
+                android:textColor="#EAF3FF"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                tools:text="75 años"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <View
+        android:id="@+id/homeContentSurface"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/bg_home_content_fade"
+        app:layout_constraintTop_toBottomOf="@id/headerUsuario"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+    <!-- Grupo activo -->
+    <TextView
+        android:id="@+id/txtGrupo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Grupo: —"
+        android:textColor="#E6FFFFFF"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:layout_marginTop="18dp"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/headerUsuario"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+
+    <!-- Nombre persona cuidada -->
+    <TextView
+        android:id="@+id/txtNombreCuidada"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:text="Cargando..."
+        android:textColor="#FFFFFF"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:layout_marginTop="6dp"
+        app:layout_constraintTop_toBottomOf="@id/txtGrupo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <!-- Edad + check -->
+    <LinearLayout
+        android:id="@+id/rowEdad"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginTop="6dp"
+        app:layout_constraintTop_toBottomOf="@id/txtNombreCuidada"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <TextView
+            android:id="@+id/txtEdad"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="75 años"
+            android:textColor="#E6FFFFFF"
+            android:textSize="15sp"/>
+
+        <TextView
+            android:id="@+id/txtCheck"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:text="✓"
+            android:textColor="#1ED760"
+            android:textSize="16sp"
+            android:textStyle="bold"/>
+    </LinearLayout>
+
+    <!-- Tarjeta grande: Próxima medicación -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cardProximaMed"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="18dp"
+        android:layout_marginEnd="18dp"
+        app:cardCornerRadius="22dp"
+        app:cardElevation="8dp"
+        app:cardBackgroundColor="#EFFFFFFF"
+        app:layout_constraintTop_toBottomOf="@id/rowEdad"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="14dp"
+        android:gravity="center_vertical">
+
+        <!-- avatar redondo (placeholder) -->
+        <ImageView
+            android:id="@+id/imgAvatar"
+            android:layout_width="54dp"
+            android:layout_height="54dp"
+            android:src="@drawable/ic_avatar_neutro"
+            android:contentDescription="Avatar"
+            android:layout_marginEnd="12dp"/>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/txtProxMedTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Próxima medicación"
+                android:textColor="#1B1B1B"
+                android:textSize="16sp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/txtProxMedSub"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="Omeprazol • 8:00 AM"
+                android:textColor="#4A4A4A"
+                android:textSize="13sp"/>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/txtChevron1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="›"
+            android:textSize="26sp"
+            android:textColor="#7A7A7A"/>
+    </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- Grid de tarjetas -->
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/scrollHomeCards"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="14dp"
+        android:layout_marginEnd="14dp"
+        android:elevation="2dp"
+        app:layout_constraintTop_toBottomOf="@id/rowTopProfile"
+        app:layout_constraintBottom_toTopOf="@id/rowActions"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <LinearLayout
+            android:id="@+id/gridCards"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+        <!-- Card A: Próxima medicación -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardProximaMedicacion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?attr/selectableItemBackground"
+            app:cardBackgroundColor="@android:color/transparent"
+            app:cardCornerRadius="22dp"
+            app:cardElevation="0dp"
+            app:strokeColor="#14FFFFFF"
+            app:strokeWidth="1dp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_home_module"
+                android:minHeight="80dp"
+                android:paddingStart="14dp"
+                android:paddingTop="12dp"
+                android:paddingEnd="14dp"
+                android:paddingBottom="12dp">
+
+                <ImageView
+                    android:id="@+id/imgProximaMedicacion"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:contentDescription="@string/cd_icono_medicacion"
+                    android:src="@drawable/ic_medica"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/txtTituloProximaMedicacion"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="6dp"
+                    android:ellipsize="end"
+                    android:maxLines="2"
+                    android:text="@string/home_proxima_medicacion"
+                    android:textColor="#1B1B1B"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toEndOf="@id/imgProximaMedicacion"
+                    app:layout_constraintTop_toTopOf="@id/imgProximaMedicacion"
+                    app:layout_constraintBottom_toBottomOf="@id/imgProximaMedicacion"
+                    app:layout_constraintEnd_toStartOf="@id/btnAddMedicacion" />
+
+                <ImageButton
+                    android:id="@+id/btnAddMedicacion"
+                    android:layout_width="26dp"
+                    android:layout_height="26dp"
+                    android:layout_marginStart="6dp"
+                    android:background="@drawable/bg_circle_add_medicacion"
+                    android:contentDescription="@string/cd_anadir_medicacion"
+                    android:padding="5dp"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/ic_add"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:tint="#0F4BB3" />
+
+                <TextView
+                    android:id="@+id/txtMedicacionNombre"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:text=""
+                    android:textColor="#3F3F3F"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    app:layout_constraintTop_toBottomOf="@id/imgProximaMedicacion"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/txtMedicacionHora"
+                    app:layout_constraintHorizontal_bias="0"
+                    app:layout_constraintHorizontal_chainStyle="spread_inside"
+                    tools:text="Omeprazol" />
+
+                <TextView
+                    android:id="@+id/txtMedicacionHora"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:gravity="end"
+                    android:maxLines="1"
+                    android:text=""
+                    android:textColor="#6B7280"
+                    android:textSize="12sp"
+                    app:layout_constraintBaseline_toBaselineOf="@id/txtMedicacionNombre"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    tools:text="Aviso activo" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Card B: Próxima cita -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardB"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            app:cardBackgroundColor="@android:color/transparent"
+            app:cardCornerRadius="22dp"
+            app:cardElevation="0dp"
+            app:strokeColor="#14FFFFFF"
+            app:strokeWidth="1dp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_home_module"
+                android:minHeight="80dp"
+                android:padding="12dp">
+
+                <ImageView
+                    android:id="@+id/imgCitasIcon"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:src="@drawable/ic_citas"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/txtCitasLabel"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="Próxima cita"
+                    android:textColor="#1B1B1B"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toEndOf="@id/imgCitasIcon"
+                    app:layout_constraintTop_toTopOf="@id/imgCitasIcon"
+                    app:layout_constraintBottom_toBottomOf="@id/imgCitasIcon"
+                    app:layout_constraintEnd_toStartOf="@+id/imgCitasMore"/>
+
+                <ImageView
+                    android:id="@+id/imgCitasMore"
+                    android:layout_width="26dp"
+                    android:layout_height="26dp"
+                    android:background="@drawable/bg_circle_add_medicacion"
+                    android:contentDescription="@string/home_view_more_info"
+                    android:padding="5dp"
+                    android:src="@drawable/ic_add"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:tint="#0F4BB3" />
+
+                <TextView
+                    android:id="@+id/txtCitaNombre"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Médico de familia"
+                    android:textColor="#4A4A4A"
+                    android:textSize="12sp"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    app:layout_constraintTop_toBottomOf="@id/imgCitasIcon"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/txtCitaFechaHora"
+                    app:layout_constraintHorizontal_chainStyle="spread_inside"/>
+
+                <TextView
+                    android:id="@+id/txtCitaFechaHora"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="Mar 23 • 11:00 AM"
+                    android:textColor="#6B7280"
+                    android:textSize="12sp"
+                    app:layout_constraintBaseline_toBaselineOf="@id/txtCitaNombre"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+
+        <!-- Card C: Última incidencia -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardC"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            app:cardBackgroundColor="@android:color/transparent"
+            app:cardCornerRadius="22dp"
+            app:cardElevation="0dp"
+            app:strokeColor="#14FFFFFF"
+            app:strokeWidth="1dp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_home_module"
+                android:minHeight="80dp"
+                android:padding="12dp">
+
+                <ImageView
+                    android:id="@+id/imgIncidenciaIcon"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:src="@drawable/ic_incidencia"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/txtIncidenciaLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="Última incidencia"
+                    android:textColor="#1B1B1B"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toEndOf="@id/imgIncidenciaIcon"
+                    app:layout_constraintTop_toTopOf="@id/imgIncidenciaIcon"
+                    app:layout_constraintBottom_toBottomOf="@id/imgIncidenciaIcon"/>
+
+                <TextView
+                    android:id="@+id/txtIncidenciaDesc"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Fiebre 38.5°C"
+                    android:textColor="#4A4A4A"
+                    android:textSize="12sp"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    app:layout_constraintTop_toBottomOf="@id/imgIncidenciaIcon"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/txtIncidenciaFechaHora"
+                    app:layout_constraintHorizontal_chainStyle="spread_inside"/>
+
+                <TextView
+                    android:id="@+id/txtIncidenciaFechaHora"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="Ayer • 9:30 PM"
+                    android:textColor="#6B7280"
+                    android:textSize="12sp"
+                    app:layout_constraintBaseline_toBaselineOf="@id/txtIncidenciaDesc"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Card D: Perfil -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardD"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="true"
+            app:cardBackgroundColor="@android:color/transparent"
+            app:cardCornerRadius="22dp"
+            app:cardElevation="0dp"
+            app:strokeColor="#14FFFFFF"
+            app:strokeWidth="1dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_home_module"
+                android:minHeight="84dp"
+                android:orientation="vertical"
+                android:padding="12dp">
+
+                <!-- ICONO + TITULO -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/imgActividadReciente"
+                        android:layout_width="22dp"
+                        android:layout_height="22dp"
+                        android:layout_marginEnd="8dp"
+                        android:contentDescription="@string/activity_recent_title"
+                        android:src="@drawable/ic_docum" />
+
+                    <TextView
+                        android:id="@+id/txtActividadRecienteTitulo"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ellipsize="end"
+                        android:maxLines="1"
+                        android:text="@string/activity_recent_title"
+                        android:textColor="#1B1B1B"
+                        android:textSize="13sp"
+                        android:textStyle="bold" />
+
+                    <ImageView
+                        android:id="@+id/imgActividadMore"
+                        android:layout_width="26dp"
+                        android:layout_height="26dp"
+                        android:background="@drawable/bg_circle_add_medicacion"
+                        android:contentDescription="@string/home_view_more_info"
+                        android:padding="5dp"
+                        android:src="@drawable/ic_add"
+                        android:tint="#0F4BB3" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/txtActividadRecienteCount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="@string/activity_recent_subtitle_zero"
+                    android:textColor="#4A4A4A"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/txtActividadRecienteHeadline"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:ellipsize="end"
+                    android:maxLines="2"
+                    android:text="@string/activity_empty"
+                    android:textColor="#2E4B75"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/txtActividadRecienteDetail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:text=""
+                    android:textColor="#6B7280"
+                    android:textSize="11sp" />
+
+                <TextView
+                    android:id="@+id/txtActividadRecienteFooter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/activity_view_full_history"
+                    android:textColor="#4A4A4A"
+                    android:textSize="11sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Card E: Seguimiento y patologías -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardSeguimientoSalud"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:clickable="true"
+            android:focusable="true"
+            app:cardBackgroundColor="@android:color/transparent"
+            app:cardCornerRadius="22dp"
+            app:cardElevation="0dp"
+            app:strokeColor="#14FFFFFF"
+            app:strokeWidth="1dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_home_module"
+                android:minHeight="84dp"
+                android:orientation="vertical"
+                android:padding="12dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/imgSeguimientoSalud"
+                        android:layout_width="22dp"
+                        android:layout_height="22dp"
+                        android:layout_marginEnd="8dp"
+                        android:contentDescription="@string/home_health_title"
+                        android:src="@drawable/ic_docum" />
+
+                    <TextView
+                        android:id="@+id/txtSeguimientoSaludTitulo"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ellipsize="end"
+                        android:maxLines="1"
+                        android:text="@string/home_health_title"
+                        android:textColor="#1B1B1B"
+                        android:textSize="13sp"
+                        android:textStyle="bold" />
+
+                    <ImageView
+                        android:id="@+id/imgSeguimientoMore"
+                        android:layout_width="26dp"
+                        android:layout_height="26dp"
+                        android:background="@drawable/bg_circle_add_medicacion"
+                        android:contentDescription="@string/home_view_more_info"
+                        android:padding="5dp"
+                        android:src="@drawable/ic_add"
+                        android:tint="#0F4BB3" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/txtSeguimientoSaludSubtitulo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="@string/home_health_subtitle"
+                    android:textColor="#4A4A4A"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/txtSeguimientoSaludDetalle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="@string/home_health_empty"
+                    android:textColor="#2E4B75"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+    <!-- Botones grandes -->
+    <LinearLayout
+        android:id="@+id/rowActions"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="14dp"
+        android:layout_marginEnd="14dp"
+        android:layout_marginBottom="8dp"
+        android:gravity="center_vertical"
+        android:elevation="2dp"
+        app:layout_constraintBottom_toTopOf="@id/bottomNav"
+        app:layout_constraintTop_toBottomOf="@id/scrollHomeCards"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnIncidencia"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:backgroundTint="#0F4BB3"
+            android:gravity="center"
+            android:minHeight="44dp"
+            android:text="@string/home_nueva_incidencia"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF"
+            android:textSize="13sp"
+            android:textStyle="bold"
+            app:cornerRadius="18dp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnSOS"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="12dp"
+            android:layout_weight="1"
+            android:backgroundTint="#D93A2F"
+            android:gravity="center"
+            android:lines="2"
+            android:minHeight="44dp"
+            android:singleLine="false"
+            android:text="@string/home_sos_mode"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF"
+            android:textSize="13sp"
+            android:textStyle="bold"
+            app:cornerRadius="18dp" />
+
+    </LinearLayout>
+
+
+    <!-- Menú inferior (simple, visual) -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/bottomNav"
+        android:layout_width="0dp"
+        android:layout_height="84dp"
+        android:layout_marginBottom="0dp"
+        app:cardCornerRadius="0dp"
+        app:cardElevation="0dp"
+        app:cardBackgroundColor="@android:color/transparent"
+        app:strokeWidth="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/bg_home_bottom_nav"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:paddingStart="16dp"
+            android:paddingTop="10dp"
+            android:paddingEnd="16dp"
+            android:paddingBottom="14dp">
+
+            <!-- INICIO -->
+            <LinearLayout
+                android:id="@+id/navInicio"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/ic_casita"
+                    android:contentDescription="Inicio"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Inicio"
+                    android:textSize="11sp"
+                    android:textStyle="bold"
+                    android:textColor="#0F4BB3"
+                    android:layout_marginTop="4dp"/>
+            </LinearLayout>
+
+            <!-- MEDICACIÓN -->
+            <LinearLayout
+                android:id="@+id/navMedicacion"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/medica"
+                    android:contentDescription="Medicación"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Medicación"
+                    android:textSize="11sp"
+                    android:textStyle="bold"
+                    android:textColor="#0F4BB3"
+                    android:layout_marginTop="4dp"/>
+            </LinearLayout>
+
+            <!-- CITAS -->
+            <LinearLayout
+                android:id="@+id/navCitas"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/ic_citas"
+                    android:contentDescription="Citas"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Citas"
+                    android:textSize="11sp"
+                    android:textStyle="bold"
+                    android:textColor="#0F4BB3"
+                    android:layout_marginTop="4dp"/>
+            </LinearLayout>
+
+            <!-- DOCUMENTOS -->
+            <LinearLayout
+                android:id="@+id/navDocumentos"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/ic_docum"
+                    android:contentDescription="@string/nav_docs"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/nav_docs"
+                    android:textSize="11sp"
+                    android:textStyle="bold"
+                    android:textColor="#0F4BB3"
+                    android:layout_marginTop="4dp"/>
+            </LinearLayout>
+
+            <!-- FAMILIA -->
+            <LinearLayout
+                android:id="@+id/navFamilia"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/ic_fami"
+                    android:contentDescription="Familia"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Familia"
+                    android:textSize="11sp"
+                    android:textStyle="bold"
+                    android:textColor="#0F4BB3"
+                    android:layout_marginTop="4dp"/>
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+    </com.google.android.material.card.MaterialCardView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
