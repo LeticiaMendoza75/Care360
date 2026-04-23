@@ -13,3 +13,9 @@
 .externalNativeBuild
 .cxx
 local.properties
+
+# Firebase y Secretos
+app/google-services.json
+.idea/
+*.apk
+/local.properties
