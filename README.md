@@ -4,10 +4,26 @@
 
 ---
 
+## 📲 Descargar aplicación
+
+Para probar la aplicación directamente en tu dispositivo Android, puedes descargar el instalador oficial desde aquí:
+
+👉 **[Descargar Care360 (APK v1.0.0)](https://github.com/LeticiaMendoza75/Care360/releases/download/v1.0.0/app-release.apk)**
+
+> **Nota:** Al ser una instalación externa a la Play Store, deberás autorizar la "Instalación desde fuentes desconocidas" en los ajustes de tu teléfono.
+
+---
+
 ## 📸 Capturas de Pantalla
-![img_1.png](img_1.png)![img_2.png](img_2.png)![img_3.png](img_3.png)![img_4.png](img_4.png)![img_5.png](img_5.png)
-![img_6.png](img_6.png)![img_7.png](img_7.png)![img_8.png](img_8.png)![img_9.png](img_9.png)![img_10.png](img_10.png)
-![img_11.png](img_11.png)![img_12.png](img_12.png)![img_13.png](img_13.png)![img_14.png](img_14.png)
+
+| | | |
+|:---:|:---:|:---:|
+| ![Pantalla 1](img_1.png) | ![Pantalla 2](img_2.png) | ![Pantalla 3](img_3.png) |
+| ![Pantalla 4](img_4.png) | ![Pantalla 5](img_5.png) | ![Pantalla 6](img_6.png) |
+| ![Pantalla 7](img_7.png) | ![Pantalla 8](img_8.png) | ![Pantalla 9](img_9.png) |
+| ![Pantalla 10](img_10.png) | ![Pantalla 11](img_11.png) | ![Pantalla 12](img_12.png) |
+| ![Pantalla 13](img_13.png) | ![Pantalla 14](img_14.png) | |
+
 ---
 
 ## ✨ Características Principales
@@ -28,10 +44,12 @@
 - **Lenguaje:** Java (Android SDK)
 - **Arquitectura:** Clean Architecture con patrón MVVM (Model-View-ViewModel).
 - **Backend:** Firebase (Firestore y Auth)
-- **UI:** XML layouts
-- **Librerías :**
-  - ViewModel 
-  - Firebase
+- **UI:** XML layouts con Material Design 3.
+- **Librerías Clave:**
+  - Dagger Hilt (Inyección de dependencias)
+  - Room (Base de datos local)
+  - ViewModel & LiveData
+  - Firebase SDK
   - Google Play Services (Auth)
 
 ---
@@ -46,7 +64,7 @@ El proyecto sigue los principios de **Arquitectura Limpia**, dividiéndose en tr
 
 ---
 
-## 🚀 Instalación y Uso
+## 🚀 Instalación para Desarrolladores
 
 1. **Clonar el repositorio:**
    ```bash
@@ -62,6 +80,7 @@ El proyecto sigue los principios de **Arquitectura Limpia**, dividiéndose en tr
    - Abrir el proyecto en Android Studio.
    - Sincronizar con Gradle y ejecutar en un dispositivo o emulador.
 
+---
 
 ## ✉️ Contacto
 

@@ -91,7 +91,7 @@
     <string name="group_entry_title">Tu grupo familiar</string>
     <string name="group_entry_subtitle">Crea un grupo para coordinar cuidados o únete con un código.</string>
     <string name="group_entry_card_create_title">Crear nuevo grupo</string>
-    <string name="group_entry_card_create_desc">Serás administradora y podrás invitar a tu familia.</string>
+    <string name="group_entry_card_create_desc">Serás administradora y podrás invitar de tu familia.</string>
     <string name="group_entry_card_create_info">Podrás invitar a tu familia después</string>
     <string name="group_entry_button_create">Crear</string>
     <string name="group_entry_card_join_title">Unirme con código</string>
@@ -236,6 +236,7 @@
     <string name="medicacion_pdf_recordatorios">Recordatorios: %1$s</string>
     <string name="medicacion_pdf_recordatorios_activos">Activos</string>
     <string name="medicacion_pdf_recordatorios_desactivados">Desactivados</string>
+    <string name="medicacion_pdf_recordatorios_desaktibatuta">Desactivado</string>
     <string name="medicacion_pdf_observaciones">Observaciones: %1$s</string>
     <string name="medicacion_pdf_sin_dias">Sin días programados</string>
     <string name="medicacion_pdf_sin_horas">Sin horas</string>
@@ -254,6 +255,8 @@
     <string name="citas_pdf_recordatorio">Recordatorio: %1$s</string>
     <string name="citas_pdf_recordatorio_activo">Activo</string>
     <string name="citas_pdf_recordatorio_inactivo">Desactivado</string>
+    <string name="citas_pdf_recordatorio_aktiboa">Activo</string>
+    <string name="citas_pdf_recordatorio_inaktiboa">Desactivado</string>
     <string name="citas_pdf_observaciones">Observaciones: %1$s</string>
     <string name="citas_pdf_no_data">No hay citas para exportar</string>
     <string name="citas_pdf_create_error">No se pudo crear el archivo PDF</string>
