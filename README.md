@@ -8,7 +8,7 @@
 
 Para probar la aplicación directamente en tu dispositivo Android, puedes descargar el instalador oficial desde aquí:
 
-👉 **[Descargar Care360 (APK v1.0.0)](https://github.com/LeticiaMendoza75/Care360/releases/download/v1.0.0/app-release.apk)**
+👉 **[Descargar Care360 (APK v1.0.1)](https://github.com/LeticiaMendoza75/Care360/releases/download/v1.0.1/app-release.apk)**
 
 > **Nota:** Al ser una instalación externa a la Play Store, deberás autorizar la "Instalación desde fuentes desconocidas" en los ajustes de tu teléfono.
 
